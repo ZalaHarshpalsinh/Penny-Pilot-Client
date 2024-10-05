@@ -7,6 +7,9 @@ import { setLoading } from "./loaderSlice"
 import toasterReducer from "./toasterSlice"
 import { setMessage } from "./toasterSlice"
 
+import customizationReducer from "./customizationSlice"
+import { setCategories, setGroups } from "./customizationSlice"
+
 export
 {
     authReducer,
@@ -18,4 +21,8 @@ export
 
     toasterReducer,
     setMessage,
+
+    customizationReducer,
+    setCategories,
+    setGroups,
 }

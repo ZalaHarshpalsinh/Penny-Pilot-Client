@@ -8,6 +8,7 @@ import {
     LoginPage,
     SignupPage,
     ProfilePage,
+    CategoriesPage,
 } from "./components";
 
 const router = createBrowserRouter([
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication={true}>
                         <ProfilePage />
+                    </AuthLayout>
+                ),
+            },
+            {
+                path: "/categories",
+                element: (
+                    <AuthLayout authentication={true}>
+                        <CategoriesPage />
                     </AuthLayout>
                 ),
             },

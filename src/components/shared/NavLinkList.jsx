@@ -9,8 +9,8 @@ function NavLinkList({ visibleNavLinks }) {
                     to={navLink.path}
                     end
                     className={({ isActive }) =>
-                        `text-lg hover:bg-blue-700 transition duration-200 bg-yellow-500 font-bold rounded-md p-2 ${
-                            isActive ? "bg-blue-700" : ""
+                        `text-lg hover:bg-blue-700 transition duration-200  font-bold rounded-md p-2 ${
+                            isActive ? "bg-blue-700" : "bg-yellow-500"
                         }`
                     }
                 >

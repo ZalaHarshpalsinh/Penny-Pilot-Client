@@ -13,7 +13,7 @@ function httpRequestHandler( requestMaker, responseHandler )
                         let response = await requestMaker();
                         response = await response.json();
 
-                        console.log( response )
+                        //console.log( response )
 
                         responseHandler[ response.statusCode ] ? responseHandler[ response.statusCode ]( response ) : defaultHttpResponseHandler( response, dispatch )
                 }

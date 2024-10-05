@@ -13,14 +13,19 @@ function Header() {
             active: isLoggedIn,
         },
         {
+            title: "Login",
+            path: "/login",
+            active: !isLoggedIn,
+        },
+        {
             title: "Signup",
             path: "/signup",
             active: !isLoggedIn,
         },
         {
-            title: "Login",
-            path: "/login",
-            active: !isLoggedIn,
+            title: "Categories",
+            path: "/categories",
+            active: isLoggedIn,
         },
     ];
 

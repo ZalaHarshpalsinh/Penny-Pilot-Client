@@ -19,6 +19,10 @@ import SignupForm from "./SigunpPage/SignupForm";
 
 import ProfilePage from "./ProfilePage/ProfilePage";
 
+import CategoriesPage from "./CategoriesPage/CategoriesPage";
+import CategoryTile from "./CategoriesPage/CategoryTile";
+import CreationForm from "./CategoriesPage/CreationForm";
+
 export
 {
     AuthLayout,
@@ -41,4 +45,8 @@ export
     SignupForm,
 
     ProfilePage,
+
+    CategoriesPage,
+    CategoryTile,
+    CreationForm,
 }
