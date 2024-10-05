@@ -8,7 +8,7 @@ import toasterReducer from "./toasterSlice"
 import { setMessage } from "./toasterSlice"
 
 import customizationReducer from "./customizationSlice"
-import { setCategories, setGroups } from "./customizationSlice"
+import { setCategories, setGroups, setFriends, setMoneyPools } from "./customizationSlice"
 
 export
 {
@@ -25,4 +25,6 @@ export
     customizationReducer,
     setCategories,
     setGroups,
+    setMoneyPools,
+    setFriends,
 }

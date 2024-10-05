@@ -27,6 +27,30 @@ class CustomizationService
                 )
         }
 
+        async getAllMoneyPools()
+        {
+                return await fetch(
+
+                        `${backendData.urlPrefix}/customizations/money-pools`,
+                        {
+                                method: "GET",
+                                credentials: 'include',
+                        }
+                )
+        }
+
+        async getAllFriends()
+        {
+                return await fetch(
+
+                        `${backendData.urlPrefix}/customizations/dummy-friends`,
+                        {
+                                method: "GET",
+                                credentials: 'include',
+                        }
+                )
+        }
+
         async createCategory( name, description, transactionType, icon )
         {
                 const categoryData = new FormData()
@@ -35,7 +59,7 @@ class CustomizationService
                 categoryData.append( "description", description )
                 categoryData.append( "transactionType", transactionType )
 
-                return fetch(
+                return await fetch(
                         `${backendData.urlPrefix}/customizations/transaction-categories`,
                         {
                                 method: "POST",
@@ -53,12 +77,44 @@ class CustomizationService
                 groupData.append( "description", description )
                 groupData.append( "transactionType", transactionType )
 
-                return fetch(
+                return await fetch(
                         `${backendData.urlPrefix}/customizations/transaction-groups`,
                         {
                                 method: "POST",
                                 credentials: "include",
                                 body: groupData,
+                        }
+                )
+        }
+
+        async createMoneyPool( name, description, icon )
+        {
+                const moneyPooldata = new FormData()
+                moneyPooldata.append( "icon", icon[ 0 ] )
+                moneyPooldata.append( "name", name )
+                moneyPooldata.append( "description", description )
+
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/money-pools`,
+                        {
+                                method: "POST",
+                                credentials: "include",
+                                body: moneyPooldata,
+                        }
+                )
+        }
+
+        async createFriend( name, email )
+        {
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/dummy-friends`,
+                        {
+                                method: "POST",
+                                headers: {
+                                        "Content-Type": "application/json"
+                                },
+                                credentials: "include",
+                                body: JSON.stringify( { name, email } ),
                         }
                 )
         }

@@ -23,6 +23,10 @@ import CategoriesPage from "./CategoriesPage/CategoriesPage";
 import CategoryTile from "./CategoriesPage/CategoryTile";
 import CreationForm from "./CategoriesPage/CreationForm";
 
+import AccountsPage from "./AccountsPage/AccountsPage";
+import MoneyPoolCreationForm from "./AccountsPage/MoneyPoolCreationForm"
+import FriendCreationForm from "./AccountsPage/FriendCreationForm"
+
 export
 {
     AuthLayout,
@@ -49,4 +53,8 @@ export
     CategoriesPage,
     CategoryTile,
     CreationForm,
+
+    AccountsPage,
+    MoneyPoolCreationForm,
+    FriendCreationForm,
 }

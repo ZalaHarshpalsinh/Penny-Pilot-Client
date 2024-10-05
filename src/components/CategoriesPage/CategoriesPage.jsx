@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { CategoryTile, CreationForm } from "../";
 import { httpRequestHandler } from "../../util";
 import { customizationService } from "../../services";
+import { setCategories, setGroups } from "../../slices";
 
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
-import { setCategories, setGroups } from "../../slices";
 
 const CategoriesPage = () => {
     const dispatch = useDispatch();

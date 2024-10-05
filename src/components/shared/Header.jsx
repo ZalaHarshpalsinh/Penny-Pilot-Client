@@ -27,6 +27,11 @@ function Header() {
             path: "/categories",
             active: isLoggedIn,
         },
+        {
+            title: "Accounts",
+            path: "/accounts",
+            active: isLoggedIn,
+        },
     ];
 
     const visibleNavLinks = [];

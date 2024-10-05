@@ -5,6 +5,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
         categories: [],
         groups: [],
+        moneyPools: [],
+        friends: [],
 }
 
 export const customizationSlice = createSlice( {
@@ -18,9 +20,17 @@ export const customizationSlice = createSlice( {
                 setGroups: ( state, action ) =>
                 {
                         state.groups = action.payload
-                }
+                },
+                setMoneyPools: ( state, action ) =>
+                {
+                        state.moneyPools = action.payload
+                },
+                setFriends: ( state, action ) =>
+                {
+                        state.friends = action.payload
+                },
         }
 } )
 
 export default customizationSlice.reducer
-export const { setCategories, setGroups } = customizationSlice.actions
+export const { setCategories, setGroups, setMoneyPools, setFriends } = customizationSlice.actions
