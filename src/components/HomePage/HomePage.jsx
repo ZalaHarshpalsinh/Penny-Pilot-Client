@@ -29,12 +29,12 @@ function HomePage() {
         {
             200: (response) => {
                 dispatch(setTransactions(response.data));
-                dispatch(
-                    setMessage({
-                        type: "success",
-                        message: "Fetched successfully.",
-                    })
-                );
+                // dispatch(
+                //     setMessage({
+                //         type: "success",
+                //         message: "Fetched successfully.",
+                //     })
+                // );
                 console.log(response);
             },
         }
@@ -105,6 +105,7 @@ function HomePage() {
                 <TransactionForm
                     onCreation={() => {
                         setIsCreationModalOpen(false);
+                        fetchTransactions(dispatch);
                     }}
                 />
             </Modal>
