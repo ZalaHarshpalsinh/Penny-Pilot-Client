@@ -3,6 +3,21 @@ import backendData from "../config/backendData";
 
 class TransactionService
 {
+        async getAllTransaction( month, year )
+        {
+                return await fetch(
+
+                        `${backendData.urlPrefix}/transactions?month=${month}&year=${year}`,
+                        {
+                                method: "GET",
+                                headers: {
+                                        "Content-Type": "application/json"
+                                },
+                                credentials: 'include',
+                        }
+                )
+        }
+
         async addIncomeTransaction( data )
         {
                 //console.log( "Income : ", data );

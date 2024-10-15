@@ -28,6 +28,8 @@ import MoneyPoolCreationForm from "./AccountsPage/MoneyPoolCreationForm"
 import FriendCreationForm from "./AccountsPage/FriendCreationForm"
 
 import HomePage from "./HomePage/HomePage";
+import TransactionItem from "./HomePage/TransactionItem";
+import TransactionDetails from "./HomePage/TransactionDetails";
 import TransactionForm from "./HomePage/TransactionForm";
 import IncomeForm from "./HomePage/IncomeForm";
 import ExpenseForm from "./HomePage/ExpenseForm";
@@ -67,6 +69,8 @@ export
     FriendCreationForm,
 
     HomePage,
+    TransactionItem,
+    TransactionDetails,
     TransactionForm,
     IncomeForm,
     ExpenseForm,

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authReducer, loaderReducer, toasterReducer, customizationReducer } from "../slices"
+import { authReducer, loaderReducer, toasterReducer, customizationReducer, transactionReducer } from "../slices"
 
 const store = configureStore( {
     reducer: {
@@ -8,6 +8,7 @@ const store = configureStore( {
         loader: loaderReducer,
         toaster: toasterReducer,
         customization: customizationReducer,
+        transaction: transactionReducer,
     }
 } )
 

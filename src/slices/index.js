@@ -10,6 +10,9 @@ import { setMessage } from "./toasterSlice"
 import customizationReducer from "./customizationSlice"
 import { setCategories, setGroups, setFriends, setMoneyPools } from "./customizationSlice"
 
+import transactionReducer from './transactionSlice'
+import { setTransactions } from "./transactionSlice"
+
 export
 {
     authReducer,
@@ -27,4 +30,7 @@ export
     setGroups,
     setMoneyPools,
     setFriends,
+
+    transactionReducer,
+    setTransactions,
 }
