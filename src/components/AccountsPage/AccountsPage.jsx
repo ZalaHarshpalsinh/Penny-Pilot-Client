@@ -130,7 +130,7 @@ const AccountsPage = () => {
                                     {friend.amount >= 0
                                         ? `They owe you: $${friend.amount}`
                                         : `You owe them: $${Math.abs(
-                                              friend.currentAmount
+                                              friend.amount
                                           )}`}
                                 </span>
                                 <button className="text-blue-500 hover:underline mr-4">

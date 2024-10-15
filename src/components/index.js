@@ -27,6 +27,14 @@ import AccountsPage from "./AccountsPage/AccountsPage";
 import MoneyPoolCreationForm from "./AccountsPage/MoneyPoolCreationForm"
 import FriendCreationForm from "./AccountsPage/FriendCreationForm"
 
+import HomePage from "./HomePage/HomePage";
+import TransactionForm from "./HomePage/TransactionForm";
+import IncomeForm from "./HomePage/IncomeForm";
+import ExpenseForm from "./HomePage/ExpenseForm";
+import LendForm from "./HomePage/LendForm"
+import BorrowForm from "./HomePage/BorrowForm";
+import TransferForm from "./HomePage/TransferForm";
+
 export
 {
     AuthLayout,
@@ -57,4 +65,12 @@ export
     AccountsPage,
     MoneyPoolCreationForm,
     FriendCreationForm,
+
+    HomePage,
+    TransactionForm,
+    IncomeForm,
+    ExpenseForm,
+    LendForm,
+    BorrowForm,
+    TransferForm,
 }
