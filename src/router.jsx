@@ -11,6 +11,7 @@ import {
     CategoriesPage,
     AccountsPage,
     HomePage,
+    AnalysisPage,
 } from "./components";
 
 const router = createBrowserRouter([
@@ -67,6 +68,14 @@ const router = createBrowserRouter([
                 element: (
                     <AuthLayout authentication={true}>
                         <HomePage />
+                    </AuthLayout>
+                ),
+            },
+            {
+                path: "/analysis",
+                element: (
+                    <AuthLayout authentication={true}>
+                        <AnalysisPage />
                     </AuthLayout>
                 ),
             },

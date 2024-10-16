@@ -11,7 +11,7 @@ import customizationReducer from "./customizationSlice"
 import { setCategories, setGroups, setFriends, setMoneyPools } from "./customizationSlice"
 
 import transactionReducer from './transactionSlice'
-import { setTransactions } from "./transactionSlice"
+import { setTransactions, setAnalysis } from "./transactionSlice"
 
 export
 {
@@ -33,4 +33,5 @@ export
 
     transactionReducer,
     setTransactions,
+    setAnalysis,
 }

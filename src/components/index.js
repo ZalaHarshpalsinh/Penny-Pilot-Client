@@ -37,6 +37,10 @@ import LendForm from "./HomePage/LendForm"
 import BorrowForm from "./HomePage/BorrowForm";
 import TransferForm from "./HomePage/TransferForm";
 
+import AnalysisPage from "./AnalysisPage/AnalysisPage";
+import IncomeAnalysis from "./AnalysisPage/IncomeAnalysis";
+import ExpenseAnalysis from "./AnalysisPage/ExpenseAnalysis";
+
 export
 {
     AuthLayout,
@@ -77,4 +81,8 @@ export
     LendForm,
     BorrowForm,
     TransferForm,
+
+    AnalysisPage,
+    IncomeAnalysis,
+    ExpenseAnalysis,
 }

@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
         transactions: [],
+        analysis: [],
 }
 
 export const transactionSlice = createSlice( {
@@ -14,8 +15,12 @@ export const transactionSlice = createSlice( {
                 {
                         state.transactions = action.payload
                 },
+                setAnalysis: ( state, action ) =>
+                {
+                        state.analysis = action.payload
+                },
         }
 } )
 
 export default transactionSlice.reducer
-export const { setTransactions } = transactionSlice.actions
+export const { setTransactions, setAnalysis } = transactionSlice.actions
