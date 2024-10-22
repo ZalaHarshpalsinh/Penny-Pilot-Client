@@ -70,6 +70,23 @@ class AuthService
                 )
 
         }
+
+        async updateProfile( username, email, profilePhoto )
+        {
+                const profileData = new FormData()
+                profileData.append( "profilePhoto", profilePhoto[ 0 ] )
+                profileData.append( "username", username )
+                profileData.append( "email", email )
+
+                return fetch(
+                        `${backendData.urlPrefix}/users/profile-details`,
+                        {
+                                method: "PATCH",
+                                credentials: "include",
+                                body: profileData,
+                        }
+                )
+        }
 }
 
 const authService = new AuthService();

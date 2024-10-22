@@ -3,14 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { httpRequestHandler } from "../../util";
 import { customizationService } from "../../services";
-import { setFriends, setMoneyPools } from "../../slices";
-import { MoneyPoolCreationForm, FriendCreationForm } from "../";
+import { setFriends, setMoneyPools, setMessage } from "../../slices";
+import {
+    MoneyPoolCreationForm,
+    FriendCreationForm,
+    EditMoneyPoolForm,
+    EditFriendForm,
+} from "../";
 
 import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 
 const AccountsPage = () => {
     const dispatch = useDispatch();
+
     const moneyPools =
         useSelector((state) => state.customization.moneyPools) || [];
     const friends = useSelector((state) => state.customization.friends) || [];
@@ -19,6 +25,32 @@ const AccountsPage = () => {
         useState(false);
 
     const [isAddFriendModalOpen, setIsAddFriendModalOpen] = useState(false);
+
+    const [isEditMoneyPoolModalOpen, setIsEditMoneyPoolModalOpen] =
+        useState(false);
+
+    const [isDeleteMoneyPoolModalOpen, setIsDeleteMoneyPoolModalOpen] =
+        useState(false);
+
+    const [selectedMoneyPool, setSelectedMoneyPool] = useState(null);
+
+    const [isEditFriendModalOpen, setIsEditFriendModalOpen] = useState(false);
+
+    const [isDeleteFriendModalOpen, setIsDeleteFriendModalOpen] =
+        useState(false);
+
+    const [selectedFriend, setSelectedFriend] = useState(null);
+
+    const closeModals = () => {
+        setIsAddMoneyPoolModalOpen(false);
+        setIsAddFriendModalOpen(false);
+        setIsEditMoneyPoolModalOpen(false);
+        setIsDeleteMoneyPoolModalOpen(false);
+        setIsEditFriendModalOpen(false);
+        setIsDeleteFriendModalOpen(false);
+        setSelectedMoneyPool(null);
+        setSelectedFriend(null);
+    };
 
     const fetchMoneyPools = httpRequestHandler(
         async () => {
@@ -30,6 +62,7 @@ const AccountsPage = () => {
             },
         }
     );
+
     const fetchFriends = httpRequestHandler(
         async () => {
             return await customizationService.getAllFriends();
@@ -37,6 +70,64 @@ const AccountsPage = () => {
         {
             200: (response) => {
                 dispatch(setFriends(response.data));
+            },
+        }
+    );
+
+    const deleteMoneyPool = httpRequestHandler(
+        async () => {
+            return await customizationService.deleteMoneyPool(
+                selectedMoneyPool._id
+            );
+        },
+        {
+            200: () => {
+                dispatch(
+                    setMessage({
+                        type: "success",
+                        message: "Deleted successfully.",
+                    })
+                );
+                closeModals();
+                fetchMoneyPools(dispatch);
+            },
+            400: () => {
+                dispatch(
+                    setMessage({
+                        type: "error",
+                        message:
+                            "Can't delete a money pool which is used in a transaction.",
+                    })
+                );
+                closeModals();
+            },
+        }
+    );
+
+    const deleteFriend = httpRequestHandler(
+        async () => {
+            return await customizationService.deleteFriend(selectedFriend._id);
+        },
+        {
+            200: () => {
+                dispatch(
+                    setMessage({
+                        type: "success",
+                        message: "Deleted successfully.",
+                    })
+                );
+                closeModals();
+                fetchFriends(dispatch);
+            },
+            400: () => {
+                dispatch(
+                    setMessage({
+                        type: "error",
+                        message:
+                            "Can't delete a friend which is involved in a transaction.",
+                    })
+                );
+                closeModals();
             },
         }
     );
@@ -80,10 +171,22 @@ const AccountsPage = () => {
                                 <span className="font-semibold text-gray-700 mr-6">
                                     Amount: ${pool.amount}
                                 </span>
-                                <button className="text-blue-500 hover:underline mr-4">
+                                <button
+                                    onClick={() => {
+                                        setSelectedMoneyPool(pool);
+                                        setIsEditMoneyPoolModalOpen(true);
+                                    }}
+                                    className="text-blue-500 hover:underline mr-4"
+                                >
                                     Edit
                                 </button>
-                                <button className="text-red-500 hover:underline">
+                                <button
+                                    onClick={() => {
+                                        setSelectedMoneyPool(pool);
+                                        setIsDeleteMoneyPoolModalOpen(true);
+                                    }}
+                                    className="text-red-500 hover:underline"
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -133,10 +236,22 @@ const AccountsPage = () => {
                                               friend.amount
                                           )}`}
                                 </span>
-                                <button className="text-blue-500 hover:underline mr-4">
+                                <button
+                                    onClick={() => {
+                                        setSelectedFriend(friend);
+                                        setIsEditFriendModalOpen(true);
+                                    }}
+                                    className="text-blue-500 hover:underline mr-4"
+                                >
                                     Edit
                                 </button>
-                                <button className="text-red-500 hover:underline">
+                                <button
+                                    onClick={() => {
+                                        setSelectedFriend(friend);
+                                        setIsDeleteFriendModalOpen(true);
+                                    }}
+                                    className="text-red-500 hover:underline"
+                                >
                                     Delete
                                 </button>
                             </div>
@@ -152,28 +267,119 @@ const AccountsPage = () => {
             </section>
             <Modal
                 open={isAddMoneyPoolModalOpen}
-                onClose={() => setIsAddMoneyPoolModalOpen(false)}
+                onClose={() => closeModals()}
                 center
             >
                 <MoneyPoolCreationForm
                     onCreation={() => {
                         fetchMoneyPools(dispatch);
-                        setIsAddMoneyPoolModalOpen(false);
+                        closeModals();
                     }}
                 />
             </Modal>
             <Modal
                 open={isAddFriendModalOpen}
-                onClose={() => setIsAddFriendModalOpen(false)}
+                onClose={() => closeModals()}
                 center
             >
                 <FriendCreationForm
                     onCreation={() => {
                         fetchFriends(dispatch);
-                        setIsAddFriendModalOpen(false);
+                        closeModals();
                     }}
                 />
             </Modal>
+            {selectedMoneyPool != null && (
+                <>
+                    <Modal
+                        open={isEditMoneyPoolModalOpen}
+                        onClose={() => {
+                            closeModals();
+                        }}
+                        center
+                    >
+                        <EditMoneyPoolForm
+                            moneyPool={selectedMoneyPool}
+                            onCreation={() => {
+                                fetchMoneyPools(dispatch);
+                                closeModals();
+                            }}
+                        />
+                    </Modal>
+                    <Modal
+                        open={isDeleteMoneyPoolModalOpen}
+                        onClose={() => {
+                            closeModals();
+                        }}
+                        center
+                    >
+                        <div>
+                            <h2 className="text-2xl font-bold m-4">
+                                Delete Money Pool
+                            </h2>{" "}
+                            <div className="m-4">
+                                <p className="text-sm text-gray-500">
+                                    Are you sure you want to delete this Money
+                                    Pool ?
+                                </p>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={() => deleteMoneyPool(dispatch)}
+                                    className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </Modal>
+                </>
+            )}
+            {selectedFriend != null && (
+                <>
+                    <Modal
+                        open={isEditFriendModalOpen}
+                        onClose={() => {
+                            closeModals();
+                        }}
+                        center
+                    >
+                        <EditFriendForm
+                            friend={selectedFriend}
+                            onCreation={() => {
+                                fetchFriends(dispatch);
+                                closeModals();
+                            }}
+                        />
+                    </Modal>
+                    <Modal
+                        open={isDeleteFriendModalOpen}
+                        onClose={() => {
+                            closeModals();
+                        }}
+                        center
+                    >
+                        <div>
+                            <h2 className="text-2xl font-bold m-4">
+                                Delete Friend
+                            </h2>{" "}
+                            <div className="m-4">
+                                <p className="text-sm text-gray-500">
+                                    Are you sure you want to delete this Friend?
+                                </p>
+                            </div>
+                            <div>
+                                <button
+                                    onClick={() => deleteFriend(dispatch)}
+                                    className="w-full bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </Modal>
+                </>
+            )}
         </div>
     );
 };

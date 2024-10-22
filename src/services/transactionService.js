@@ -132,6 +132,36 @@ class TransactionService
                         }
                 )
         }
+
+        async getIncomeAnalysisGroupWise( month, year )
+        {
+                return await fetch(
+
+                        `${backendData.urlPrefix}/analysis/income/transaction-group-wise?month=${month}&year=${year}`,
+                        {
+                                method: "GET",
+                                headers: {
+                                        "Content-Type": "application/json"
+                                },
+                                credentials: 'include',
+                        }
+                )
+        }
+
+        async getExpenseAnalysisGroupWise( month, year )
+        {
+                return await fetch(
+
+                        `${backendData.urlPrefix}/analysis/expense/transaction-group-wise?month=${month}&year=${year}`,
+                        {
+                                method: "GET",
+                                headers: {
+                                        "Content-Type": "application/json"
+                                },
+                                credentials: 'include',
+                        }
+                )
+        }
 }
 
 const transactionService = new TransactionService();

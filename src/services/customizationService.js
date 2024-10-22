@@ -118,6 +118,61 @@ class CustomizationService
                         }
                 )
         }
+
+        async updateMoneyPool( id, name, description, icon )
+        {
+                const moneyPooldata = new FormData()
+                moneyPooldata.append( "icon", icon[ 0 ] )
+                moneyPooldata.append( "name", name )
+                moneyPooldata.append( "description", description )
+
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/money-pools/${id}`,
+                        {
+                                method: "PATCH",
+                                credentials: "include",
+                                body: moneyPooldata,
+                        }
+                )
+        }
+
+        async deleteMoneyPool( id )
+        {
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/money-pools/${id}`,
+                        {
+                                method: "DELETE",
+                                credentials: "include",
+                        }
+                )
+        }
+
+        async updateFriend( id, name, email )
+        {
+
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/dummy-friends/${id}`,
+                        {
+                                method: "PATCH",
+                                headers: {
+                                        "Content-Type": "application/json"
+                                },
+                                credentials: "include",
+                                body: JSON.stringify( { name, email } ),
+                        }
+                )
+        }
+
+        async deleteFriend( id )
+        {
+                return await fetch(
+                        `${backendData.urlPrefix}/customizations/dummy-friends/${id}`,
+                        {
+                                method: "DELETE",
+                                credentials: "include",
+                        }
+                )
+        }
 }
 
 const customizationService = new CustomizationService();

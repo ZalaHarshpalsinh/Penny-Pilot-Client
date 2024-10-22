@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { transactionService } from "../../services";
 import { httpRequestHandler } from "../../util";
 import { setAnalysis } from "../../slices";
-import { IncomeAnalysis, ExpenseAnalysis } from "../";
+import {
+    IncomeAnalysis,
+    ExpenseAnalysis,
+    IncomeAnalysisGroupWise,
+    ExpenseAnalysisGroupWise,
+} from "../";
 
 function AnalysisPage() {
     const dispatch = useDispatch();
@@ -30,8 +35,18 @@ function AnalysisPage() {
                     currentMonth.getMonth() + 1,
                     currentMonth.getFullYear()
                 );
-            } else {
+            } else if (analysisType == "Expense") {
                 return await transactionService.getExpenseAnalysis(
+                    currentMonth.getMonth() + 1,
+                    currentMonth.getFullYear()
+                );
+            } else if (analysisType == "IncomeGrp") {
+                return await transactionService.getIncomeAnalysisGroupWise(
+                    currentMonth.getMonth() + 1,
+                    currentMonth.getFullYear()
+                );
+            } else if (analysisType == "ExpenseGrp") {
+                return await transactionService.getExpenseAnalysisGroupWise(
                     currentMonth.getMonth() + 1,
                     currentMonth.getFullYear()
                 );
@@ -78,8 +93,18 @@ function AnalysisPage() {
                         value={analysisType}
                         onChange={(e) => setAnalysisType(e.target.value)}
                     >
-                        <option value={"Income"}>Income overview</option>
-                        <option value={"Expense"}>Expense overview</option>
+                        <option value={"Income"}>
+                            Income overview (Category wise)
+                        </option>
+                        <option value={"Expense"}>
+                            Expense overview (Category wise)
+                        </option>
+                        <option value={"IncomeGrp"}>
+                            Income overview (Group wise)
+                        </option>
+                        <option value={"ExpenseGrp"}>
+                            Expense overview (Group wise)
+                        </option>
                     </select>
                 </div>
                 <button
@@ -99,6 +124,12 @@ function AnalysisPage() {
             )}
             {analysisType == "Expense" && (
                 <ExpenseAnalysis analysisData={analysisData} />
+            )}
+            {analysisType == "IncomeGrp" && (
+                <IncomeAnalysisGroupWise analysisData={analysisData} />
+            )}
+            {analysisType == "ExpenseGrp" && (
+                <ExpenseAnalysisGroupWise analysisData={analysisData} />
             )}
         </div>
     );

@@ -18,6 +18,7 @@ import SignupPage from "./SigunpPage/SignupPage";
 import SignupForm from "./SigunpPage/SignupForm";
 
 import ProfilePage from "./ProfilePage/ProfilePage";
+import EditProfileForm from "./ProfilePage/EditProfileForm";
 
 import CategoriesPage from "./CategoriesPage/CategoriesPage";
 import CategoryTile from "./CategoriesPage/CategoryTile";
@@ -26,6 +27,8 @@ import CreationForm from "./CategoriesPage/CreationForm";
 import AccountsPage from "./AccountsPage/AccountsPage";
 import MoneyPoolCreationForm from "./AccountsPage/MoneyPoolCreationForm"
 import FriendCreationForm from "./AccountsPage/FriendCreationForm"
+import EditMoneyPoolForm from "./AccountsPage/EditMoneyPoolForm";
+import EditFriendForm from "./AccountsPage/EditFriendForm";
 
 import HomePage from "./HomePage/HomePage";
 import TransactionItem from "./HomePage/TransactionItem";
@@ -40,6 +43,8 @@ import TransferForm from "./HomePage/TransferForm";
 import AnalysisPage from "./AnalysisPage/AnalysisPage";
 import IncomeAnalysis from "./AnalysisPage/IncomeAnalysis";
 import ExpenseAnalysis from "./AnalysisPage/ExpenseAnalysis";
+import IncomeAnalysisGroupWise from "./AnalysisPage/IncomeAnalysisGroupWise";
+import ExpenseAnalysisGroupWise from "./AnalysisPage/ExpenseAnalysisGroupWise";
 
 export
 {
@@ -63,6 +68,7 @@ export
     SignupForm,
 
     ProfilePage,
+    EditProfileForm,
 
     CategoriesPage,
     CategoryTile,
@@ -71,6 +77,8 @@ export
     AccountsPage,
     MoneyPoolCreationForm,
     FriendCreationForm,
+    EditMoneyPoolForm,
+    EditFriendForm,
 
     HomePage,
     TransactionItem,
@@ -85,4 +93,6 @@ export
     AnalysisPage,
     IncomeAnalysis,
     ExpenseAnalysis,
+    IncomeAnalysisGroupWise,
+    ExpenseAnalysisGroupWise,
 }
